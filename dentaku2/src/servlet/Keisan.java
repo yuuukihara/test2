@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.BackMoney;
 import model.Logic;
 import model.OturiLogic;
 
@@ -61,6 +62,7 @@ public class Keisan extends HttpServlet {
 
 		double result = 0.0;
 		String oturi =null;
+		String oturi1 = null;
 
 		// TODO 足し算
 		if(way.equals("1")){
@@ -114,17 +116,36 @@ public class Keisan extends HttpServlet {
 
 		// TODO おつり
 		if(way.equals("8")){
+			int first =0;
+			int itemPrice = 0;
+			int payPrice = 0;
+			for(String mat:math){
+				if(first == 0){
+					itemPrice = Integer.parseInt(mat);
+					first++;
+				}else{
+					payPrice = Integer.parseInt(mat);
+				}
+			}
 			if(math.length != 2){
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/twoWriteError.jsp");
+				dispatcher.forward(request, response);
+			}else if(itemPrice>payPrice){
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/oturi.jsp");
 				dispatcher.forward(request, response);
 			}else{
 				OturiLogic oturiLogic = new OturiLogic();
 				oturi = oturiLogic.oturi(math);
+
+				BackMoney backmoney = new BackMoney();
+				oturi1 = backmoney.backmoney(math);
 			}
 		}
 
+
 		request.setAttribute("result",result);
 		request.setAttribute("oturi", oturi);
+		request.setAttribute("oturi1", oturi1);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/result.jsp");
 		dispatcher.forward(request, response);
