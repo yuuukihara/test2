@@ -1,0 +1,16 @@
+package com.internousdev.template.dao;
+
+import java.sql.SQLException;
+
+import com.internousdev.template.util.DBConnector;
+
+public class UserCreateCompleteDAO {
+
+	private DateUtil dataUtil = new DateUtil();
+	private String sql = "insert into login_user_transaction(login_id,login_pass,user_name,insert_date) VALUES(?,?,?,?)";
+
+	public void createUser(String loginUserId,String loginUserName,String loginUserPassword)throws SQLException{
+		DBConnector db = new DBConnector;
+		Connection con = db.getConnection();
+	}
+}

@@ -25,7 +25,6 @@ public class Keisan extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		String keisan = request.getParameter("keisan");
 		String way = request.getParameter("way");
 		String[] eng = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","y","v","x","w","y","z","!","#","$","'","%","&","(",")","*","?","}","{","`","+","-","~","|"};
@@ -127,6 +126,7 @@ public class Keisan extends HttpServlet {
 					payPrice = Integer.parseInt(mat);
 				}
 			}
+			try{
 			if(math.length != 2){
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/twoWriteError.jsp");
 				dispatcher.forward(request, response);
@@ -139,6 +139,9 @@ public class Keisan extends HttpServlet {
 
 				BackMoney backmoney = new BackMoney();
 				oturi1 = backmoney.backmoney(math);
+			}
+			}catch(Exception e){
+				e.printStackTrace();
 			}
 		}
 
