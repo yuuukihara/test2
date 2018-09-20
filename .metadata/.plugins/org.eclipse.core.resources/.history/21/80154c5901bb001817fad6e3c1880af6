@@ -1,0 +1,30 @@
+set names utf8;
+set foreign_key_checks = 0;
+
+drop database if exists website;
+
+create database if not exists website;
+use website;
+
+drop table if exists login_User_Transaction;
+
+create table login_user_transaction(
+	id int not null primary key auto_increment,
+	login_id varchar(16),
+	login_pass varchar(16),
+	login_user_name varchar(50)
+);
+
+drop table if exists item_info_transaction;
+
+create table item_info_transaction(
+	id int not null primary key auto_increment,
+	item_name varchar(30),
+	item_price int,
+	item_stock int,
+	insert_date datetime,
+	update_date datetime);
+
+
+insert into login_user_transaction(login_id,login_pass,login_user_name) VALUES("Yuuki","0219","Yuuki");
+insert into item_info_transaction(item_name,item_price,item_stock)VALUES("コーラ",120,100);

@@ -1,0 +1,26 @@
+package dao;
+
+import util.DBConnector;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+public class MyPageDAO {
+
+	DBConnector db = new DBConnector();
+	Connection con = db.getConnection();
+
+	public ArrayList<MyPageDTO> getMyPageUserInfo(String iti,String umi) throws SQLException{
+		ArrayList<MyPageDTO> mpdto = new ArrayList<MyPageDTO>();
+		String sql = "select ubit.id, iit.iname, ubit.tprice, ubit.tcount, ubit.pay, ubit.insert_date"
+				+ " from ubit left join iit on ubit.itid = iit.id where ubit.iti = ? and ubit.umi = ? order by insert_date desc";
+
+		try{
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1,iti);
+			ps.setString(2, umi);
+
+			Result
+		}
+	}
+
+}

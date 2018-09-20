@@ -1,0 +1,10 @@
+package dao;
+
+import util.DBConnector;
+
+public class UserCreateCompleteDAO {
+	private DBConnector db = new DBConnector();
+	private Connection con = db.getConnection();
+	private DateUtil dut = new DateUtil();
+
+}

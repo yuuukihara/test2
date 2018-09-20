@@ -1,0 +1,57 @@
+package action;
+
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+import dao.LoginDAO;
+import dto.LoginDTO;
+
+public class LoginAction extends ActionSupport implements SessionAware{
+
+	String name;
+	String pass;
+	Map<String,Object> session;
+	LoginDAO ldao = new LoginDAO();
+	LoginDTO ldto = new LoginDTO();
+	BuyItemDAO bidao = new BuyItemDAO();
+
+	public String execute(){
+		String result = ERROR;
+		ldto = dao.getLoginUserInfo(name,pass);
+		session.put("login_user", ldto);
+		if(((ldto)session.get("login_user")).getLoginFlg()){
+			result SUCCESS;
+			BuyItemDTO bidto = bidao.getBuyItemInfo();
+			session.put("login_user_id", ldto.getLoginId());
+			session.put("id", bidto.getId());
+			session.put("buyItem_name", bidto.getItemName());
+			session.put("buyItem_price", bidto.getItemPrice());
+			return result;
+		}
+	return result;
+	}
+
+	public String getName(){
+		return name;
+	}
+	public void setName(String name){
+		this.name = name;
+	}
+	public String getPass(){
+		return pass;
+	}
+	public void setPass(String pass){
+		this.pass = pass;
+	}
+
+	@Override
+	public void setSession(Map<String,Object> session){
+		this.session = session;
+	}
+
+
+
+}

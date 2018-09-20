@@ -1,0 +1,45 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import dto.LoginDTO;
+import util.DBConnector;
+
+public class LoginDAO {
+	private DBConnector  db =  new DBConnector();
+	private Connection con = db.getConnection();
+
+	private LoginDTO ldto = new LoginDTO();
+
+	public LoginDTO getLoginUserInfo(String loginUserId,String loginPassword){
+		String sql = "select * from lut where lid = ? and lpass = ?";
+
+		try{
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, loginUserId);
+			ps.setString(2, loginPassword);
+
+			ResultSet rs = ps.executeQuery();
+
+			if(rs.next()){
+				ldto.setLoginId(rs.getString("lid"));
+				ldto.setLoginPassword(rs.getString("lpass"));
+				ldto.setUserName(rs.getString("uname"));
+
+				if(!(rs.getString("lid").equals(null))){
+					ldto.setLoginFlg(true);
+				}
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return ldto;
+	}
+
+	public LoginDTO getLoginDTO(){
+		return ldto;
+	}
+
+}

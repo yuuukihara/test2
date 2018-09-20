@@ -1,0 +1,33 @@
+package dao;
+
+import java.sql.PreparedStatement;
+
+import com.mysql.jdbc.Connection;
+
+import util.DBConnector;
+import util.DateUtil;
+
+public class UserCreateCompleteDAO {
+	DBConnector db = new DBConnector();
+	Connection con = db.getConnection();
+	DateUtil du = new DateUtil();
+
+	String sql ="insert into login_user_transaction(login_id,login_pass,login_user_name) values(?,?,?,?)";
+
+	public void createUser(String loginId,String loginPass,String loginUserName)throws SQLException{
+		try{
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, loginId);
+			ps.setString(2, loginPass);
+			ps.setString(3, loginUserName);
+			ps.setString(4, du.getDate());
+
+			ps.execute();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			con.close();
+		}
+	}
+
+}

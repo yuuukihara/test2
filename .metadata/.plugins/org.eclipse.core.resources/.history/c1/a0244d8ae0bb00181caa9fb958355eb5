@@ -1,0 +1,31 @@
+package action;
+
+import java.util.Map;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+public class BuyItemAction extends ActionSupport implements SessinAware{
+	public Map<String,Object> session;
+	int count;
+	String pay;
+
+	public String execute(){
+		String result = SUCCESS;
+		session.put("count", count);
+		int intCount = Integer.getInteger(session.get("count").toString());
+		int intPay = Integer.getInteger(session.get("pay").toString());
+
+		session.put("total_price", intCount * intPay);
+		String payment;
+		if(pay.equals("1")){
+			payment="現金払い";
+			session.put("pay", payment);
+		}
+		if(pay.equals("2")){
+			payment="クレジットカード";
+			session.put("pay", payment);
+		}
+		return result;
+	}
+
+}

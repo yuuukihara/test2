@@ -1,0 +1,17 @@
+package action;
+
+import org.apache.struts2.interceptor.SessionAware;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+public class UserCreateCompleteAction extends ActionSupport implements SessionAware{
+	String loginId;
+	String loginUserName;
+	String loginPass;
+	U
+
+	public String execute()throws SQLException{
+
+	}
+
+}

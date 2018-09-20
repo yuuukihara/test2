@@ -1,0 +1,26 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+import util.DBConnector;
+
+public class LoginDAO {
+	private DBConnector  db =  new DBConnector();
+	private Connection con = db.getConnection();
+
+	private LoginDTO ldto = new LoginDTO();
+
+	public LoginDTO getLoginUserInfo(String loginUserId,String loginPassword){
+		String sql = "select * from lid = ? and lpass = ?";
+
+		try{
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, loginUserId);
+			ps.setString(2, loginPassword);
+
+			ResultSet rs = ps.executeQuery();
+		}
+	}
+
+}

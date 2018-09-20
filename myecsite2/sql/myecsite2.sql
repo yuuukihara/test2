@@ -1,0 +1,46 @@
+set names utf8;
+set foreign_key_checks = 0;
+drop database if exists myecsite2;
+
+create database if not exists myecsite2;
+use myecsite2;
+
+drop table if exists lut;
+
+create table lut(
+	id int not null primary key auto_increment,
+	lid varchar(16) unique,
+	lpass varchar(16),
+	uname varchar(50),
+	insert_date datetime,
+	updated_date datetime
+);
+
+drop table if exists iit;
+
+create table iit(
+	id int not null primary key auto_increment,
+	iname varchar(30),
+	iprice int,
+	istock int,
+	insert_date datetime,
+	update_date datetime
+);
+
+
+drop table if exists ubit;
+
+create table ubit(
+	id int not null primary key auto_increment,
+	itid int,
+	tprice int,
+	tcount int,
+	umid varchar(16),
+	pay varchar(30),
+	insert_date datetime,
+	update_date datetime
+);
+
+insert into iit(iname,iprice,istock)VALUES("ノート",100,50);
+insert into lut(lid,lpass,uname)VALUES("i","i01","test");
+insert into ubit(pay)VALUE("クレジット");

@@ -1,0 +1,9 @@
+package dao;
+
+import util.DBConnector;
+
+public class LoginDAO {
+	private DBConnector  db =  new DBConnector();
+	private Connection con = db.getConnection();
+
+}

@@ -1,0 +1,8 @@
+package action;
+
+public class GoHomeAction extends ActionSupport{
+	public String execute(){
+		return result;
+	}
+
+}

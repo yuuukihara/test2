@@ -1,0 +1,60 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import util.DBConnector;
+
+public class MyPageDAO {
+
+	DBConnector db = new DBConnector();
+	Connection con = db.getConnection();
+
+	public ArrayList<MyPageDTO> getMyPageUserInfo(String iti,String umi) throws SQLException{
+		ArrayList<MyPageDTO> mpdto = new ArrayList<MyPageDTO>();
+		String sql = "select ubit.id, iit.iname, ubit.tprice, ubit.tcount, ubit.pay, ubit.insert_date"
+				+ " from ubit left join iit on ubit.itid = iit.id where ubit.iti = ? and ubit.umi = ? order by insert_date desc";
+
+		try{
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1,iti);
+			ps.setString(2,umi);
+
+			ResultSet rs = ps.executeQuery();
+
+			while(rs.next()){
+				MyPageDTO dto = new MyPageDTO();
+				dto.setId(rs.getString("id").toString());
+				dto.setItemName(rs.getString("iname").toString());
+				dto.setTotalPrice(rs.getString("tprice").toString());
+				dto.setTotalCount(rs.getString("tcount").toString());
+				dto.setPayment(rs.getString("pay"));
+				dto.setInsert_date(rs.getString("pay"));
+				mpdto.add(dto);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			con.close();
+		}
+		return mpdto;
+	}
+	public int buyItemHistoryDelete(String iti,String umi) throws SQLException{
+		String sql = "delete from ubit where iti = ? and umid = ?";
+		PreparedStatement ps = con.prepareStatement(sql);
+		int result = 0;
+		try{
+			ps.setString(1, iti);
+			ps.setString(2,umi);
+			result = ps.executeUpdate();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			con.close();
+		}
+		return result;
+	}
+}

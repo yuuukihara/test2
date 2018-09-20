@@ -1,0 +1,6 @@
+package action;
+
+public class MyPageAction extends ActionSupport implements SessionAware{
+
+
+}

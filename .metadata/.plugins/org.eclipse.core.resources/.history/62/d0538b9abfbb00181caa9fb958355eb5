@@ -1,0 +1,10 @@
+package action;
+
+public class UserCreateAction extends ActionSupport{
+
+	public String execute(){
+		String result = SUCCESS;
+		return result;
+	}
+
+}

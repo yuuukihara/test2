@@ -1,0 +1,10 @@
+package dao;
+
+import util.DBConnector;
+
+public class BuyItemCompleteDAO {
+	DBConnector db = new DBConnector();
+	Connection con = db.getConnection();
+	DateUtil du = new DateUtil();
+
+}

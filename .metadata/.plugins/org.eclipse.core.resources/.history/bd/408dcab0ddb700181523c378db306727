@@ -1,0 +1,17 @@
+package dao;
+
+import com.mysql.jdbc.Connection;
+
+import util.DBConnector;
+
+public class UserCreateCompleteDAO {
+	private DBConnector db = new DBConnector();
+	private Connection con = db.getConnection();
+	private DateUtil dut = new DateUtil();
+	private String sql = "insert into lut(lid,lpass,uname,insert_date)VALUES(?,?,?,?)" ;
+
+	try{
+		PreparedStatement ps = con.getPreparedStatement(sql);
+	}
+
+}

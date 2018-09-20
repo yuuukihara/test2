@@ -1,0 +1,22 @@
+package dao;
+
+import java.sql.PreparedStatement;
+
+import com.mysql.jdbc.Connection;
+
+import util.DBConnector;
+
+public class BuyItemDAO {
+
+	DBConnector db = new DBConnector();
+	Connection con = db.getConnection();
+	BuyItemDTO bidto = new BuyItemDTO();
+
+	public BuyItemDTO getBuyItemInfo(){
+		String sql="select id,item_name,item_price from item_info_transaction";
+		try{
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+		}
+	}
+}

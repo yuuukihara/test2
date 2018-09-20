@@ -1,0 +1,29 @@
+package action;
+
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+public class MyPageAction extends ActionSupport implements SessionAware{
+	Map<String,Object> session;
+	MyPageDAO dao = new MyPageDAO();
+	ArrayList<MyPageDTO> mplist = new ArrayList<MyPageDTO>();
+	String deleteFlg;
+	String message;
+
+	public String execute() throws SQLException{
+		if(!session.containskey("id")){
+			return ERROR;
+		}
+		if(deleteFlag == null){
+			String iti = session.get("id").toString();
+			String umi = session.get("login_User_id").toString();
+			mplist = dao.getMyPageUserInfo(iti,umi);
+		}else if(deleteFlg.equals("1")){
+			delete();
+		}
+	}
+
+}

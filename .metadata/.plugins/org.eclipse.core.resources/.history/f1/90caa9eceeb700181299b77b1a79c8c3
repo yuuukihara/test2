@@ -1,0 +1,5 @@
+package action;
+
+public class BuyItemConfirmAction extends ActionSupport implements SessionAware{
+
+}

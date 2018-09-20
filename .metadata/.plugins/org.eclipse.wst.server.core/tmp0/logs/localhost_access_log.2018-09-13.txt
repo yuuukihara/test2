@@ -151,3 +151,8 @@
 0:0:0:0:0:0:0:1 - - [13/Sep/2018:14:32:02 +0900] "POST /myecsite/BuyItemConfirmAction.action HTTP/1.1" 200 366
 0:0:0:0:0:0:0:1 - - [13/Sep/2018:14:32:24 +0900] "GET /myecsite/MyPageAction.action HTTP/1.1" 200 932
 0:0:0:0:0:0:0:1 - - [13/Sep/2018:14:32:40 +0900] "GET /myecsite/HomeAction HTTP/1.1" 200 979
+127.0.0.1 - - [13/Sep/2018:16:44:43 +0900] "GET / HTTP/1.1" 404 1019
+0:0:0:0:0:0:0:1 - - [13/Sep/2018:16:44:45 +0900] "GET /myecsite2/home.jsp HTTP/1.1" 200 680
+0:0:0:0:0:0:0:1 - - [13/Sep/2018:16:44:56 +0900] "POST /myecsite2/HomeAction;jsessionid=FF113FFCCC3DADA98CBA11FF6946DA3A HTTP/1.1" 200 3438
+127.0.0.1 - - [13/Sep/2018:17:04:45 +0900] "GET / HTTP/1.1" 404 1019
+0:0:0:0:0:0:0:1 - - [13/Sep/2018:17:04:47 +0900] "GET /myecsite2/login.jsp HTTP/1.1" 200 954

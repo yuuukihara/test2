@@ -1,0 +1,43 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import dto.LoginDTO;
+import util.DBConnector;
+
+public class LoginDAO {
+	DBConnector db = new DBConnector();
+	Connection con = db.getConnection();
+	LoginDTO  ldto = new LoginDTO();
+
+	public LoginDTO getLoginUserInfo(String name,String pass){
+		String sql = "select * from login_user_transaction where login_user_name = ? and login_pass = ?";
+		try{
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, name);
+			ps.setString(2, pass);
+			ResultSet rs = ps.executeQuery();
+
+			if(rs.next()){
+				ldto.setId(rs.getInt("id").toString());
+				ldto.setLoginId(rs.getString("login_id").toString());
+				ldto.setUserName(rs.getString("login_user_name").toString());
+				ldto.setLoginPassword(rs.getString("login_pass").toString());
+
+				if(!(rs.getString("login_id").equals(null))){
+					ldto.setLoginFlg(true);
+				}
+			}
+	}catch(Exception e){
+		e.printStackTrace();
+	}
+	return ldto;
+	}
+
+	public LoginDTO getLoginDTO(){
+		return ldto;
+	}
+
+}
